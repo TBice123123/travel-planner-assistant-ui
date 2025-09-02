@@ -2,6 +2,8 @@
 
 该项目fork自官方的deepagents-ui项目，魔改了一些功能。
 
+B站视频链接：https://www.bilibili.com/video/BV1dkaAzAE3P/?vd_source=dc888e407bc7cf296286572a7555e7e3
+
 Deep Agents 是通用的 AI 智能体，能够处理各种复杂度的任务。这是一个用于与 LangChain 的 [`deep-agents`] 包配套使用的 UI 界面。
 
 ### 连接到本地 LangGraph 服务器
