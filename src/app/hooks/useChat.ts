@@ -9,8 +9,8 @@ import { useAuthContext } from "@/providers/Auth";
 
 type StateType = {
   messages: Message[];
-  todos: TodoItem[];
-  files: Record<string, string>;
+  todo: TodoItem[];
+  note: Record<string, string>;
 };
 
 export function useChat(
@@ -19,7 +19,7 @@ export function useChat(
     value: string | ((old: string | null) => string | null) | null,
   ) => void,
   onTodosUpdate: (todos: TodoItem[]) => void,
-  onFilesUpdate: (files: Record<string, string>) => void,
+  onNoteUpdate: (note: Record<string, string>) => void,
 ) {
   const deployment = useMemo(() => getDeployment(), []);
   const { session } = useAuthContext();
@@ -34,16 +34,32 @@ export function useChat(
 
   const handleUpdateEvent = useCallback(
     (data: { [node: string]: Partial<StateType> }) => {
-      Object.entries(data).forEach(([_, nodeData]) => {
-        if (nodeData?.todos) {
-          onTodosUpdate(nodeData.todos);
+      console.log("SSE流数据:", data);
+      
+      // 处理 tools 节点的数据
+      if (data.tools) {
+        console.log("tools 节点数据:", data.tools);
+        
+        // 处理 todo 数据
+        if (data.tools?.todo && Array.isArray(data.tools.todo)) {
+          console.log(`发现 todo 数据，数量: ${data.tools.todo.length}`);
+          onTodosUpdate(data.tools.todo);
         }
-        if (nodeData?.files) {
-          onFilesUpdate(nodeData.files);
+        
+      }
+      
+      // 处理 write_note 节点的数据
+      if (data.write_note) {
+        console.log("write_note 节点数据:", data.write_note);
+        
+        // 处理 note 数据
+        if (data.write_note?.note && typeof data.write_note.note === 'object') {
+          console.log(`发现 note 数据，键数量: ${Object.keys(data.write_note.note).length}`);
+          onNoteUpdate(data.write_note.note);
         }
-      });
+      }
     },
-    [onTodosUpdate, onFilesUpdate],
+    [onTodosUpdate, onNoteUpdate],
   );
 
   const stream = useStream<StateType>({
@@ -76,6 +92,7 @@ export function useChat(
           config: {
             recursion_limit: 100,
           },
+          streamSubgraphs: true,
         },
       );
     },

@@ -29,7 +29,7 @@ export const TasksFilesSidebar = React.memo<TasksFilesSidebarProps>(
   ({ todos, files, onFileClick, collapsed, onToggleCollapse }) => {
     const getStatusIcon = useCallback((status: TodoItem["status"]) => {
       switch (status) {
-        case "completed":
+        case "done":
           return <CheckCircle size={16} className={styles.completedIcon} />;
         case "in_progress":
           return <Clock size={16} className={styles.progressIcon} />;
@@ -42,7 +42,7 @@ export const TasksFilesSidebar = React.memo<TasksFilesSidebarProps>(
       return {
         pending: todos.filter((t) => t.status === "pending"),
         in_progress: todos.filter((t) => t.status === "in_progress"),
-        completed: todos.filter((t) => t.status === "completed"),
+        completed: todos.filter((t) => t.status === "done"),
       };
     }, [todos]);
 
