@@ -13,7 +13,7 @@ import { Input } from "@/components/ui/input";
 import { Send, Bot, LoaderCircle, SquarePen, History, X } from "lucide-react";
 import { ChatMessage } from "../ChatMessage/ChatMessage";
 import { ThreadHistorySidebar } from "../ThreadHistorySidebar/ThreadHistorySidebar";
-import type { SubAgent, TodoItem, ToolCall } from "../../types/types";
+import type { TodoItem, ToolCall } from "../../types/types";
 import { useChat } from "../../hooks/useChat";
 import styles from "./ChatInterface.module.scss";
 import { Message } from "@langchain/langgraph-sdk";
@@ -21,11 +21,9 @@ import { extractStringFromMessageContent } from "../../utils/utils";
 
 interface ChatInterfaceProps {
   threadId: string | null;
-  selectedSubAgent: SubAgent | null;
   setThreadId: (
     value: string | ((old: string | null) => string | null) | null,
   ) => void;
-  onSelectSubAgent: (subAgent: SubAgent) => void;
   onTodosUpdate: (todos: TodoItem[]) => void;
   onFilesUpdate: (files: Record<string, string>) => void;
   onNewThread: () => void;
@@ -35,9 +33,7 @@ interface ChatInterfaceProps {
 export const ChatInterface = React.memo<ChatInterfaceProps>(
   ({
     threadId,
-    selectedSubAgent,
     setThreadId,
-    onSelectSubAgent,
     onTodosUpdate,
     onFilesUpdate,
     onNewThread,
@@ -228,8 +224,6 @@ export const ChatInterface = React.memo<ChatInterfaceProps>(
                   message={data.message}
                   toolCalls={data.toolCalls}
                   showAvatar={data.showAvatar}
-                  onSelectSubAgent={onSelectSubAgent}
-                  selectedSubAgent={selectedSubAgent}
                 />
               ))}
               {isLoading && (

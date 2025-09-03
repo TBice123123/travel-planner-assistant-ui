@@ -4,19 +4,15 @@ import React, { useState, useCallback, useEffect } from "react";
 import { useQueryState } from "nuqs";
 import { ChatInterface } from "./components/ChatInterface/ChatInterface";
 import { TasksFilesSidebar } from "./components/TasksFilesSidebar/TasksFilesSidebar";
-import { SubAgentPanel } from "./components/SubAgentPanel/SubAgentPanel";
 import { FileViewDialog } from "./components/FileViewDialog/FileViewDialog";
 import { createClient } from "@/lib/client";
 import { useAuthContext } from "@/providers/Auth";
-import type { SubAgent, FileItem, TodoItem } from "./types/types";
+import type { FileItem, TodoItem } from "./types/types";
 import styles from "./page.module.scss";
 
 export default function HomePage() {
   const { session } = useAuthContext();
   const [threadId, setThreadId] = useQueryState("threadId");
-  const [selectedSubAgent, setSelectedSubAgent] = useState<SubAgent | null>(
-    null,
-  );
   const [selectedFile, setSelectedFile] = useState<FileItem | null>(null);
   const [todos, setTodos] = useState<TodoItem[]>([]);
   const [files, setFiles] = useState<Record<string, string>>({});
@@ -62,7 +58,6 @@ export default function HomePage() {
 
   const handleNewThread = useCallback(() => {
     setThreadId(null);
-    setSelectedSubAgent(null);
     setTodos([]);
     setFiles({});
   }, [setThreadId]);
@@ -79,20 +74,12 @@ export default function HomePage() {
       <div className={styles.mainContent}>
         <ChatInterface
           threadId={threadId}
-          selectedSubAgent={selectedSubAgent}
           setThreadId={setThreadId}
-          onSelectSubAgent={setSelectedSubAgent}
           onTodosUpdate={setTodos}
           onFilesUpdate={setFiles}
           onNewThread={handleNewThread}
           isLoadingThreadState={isLoadingThreadState}
         />
-        {selectedSubAgent && (
-          <SubAgentPanel
-            subAgent={selectedSubAgent}
-            onClose={() => setSelectedSubAgent(null)}
-          />
-        )}
       </div>
       {selectedFile && (
         <FileViewDialog
