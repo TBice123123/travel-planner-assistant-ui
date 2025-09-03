@@ -31,21 +31,30 @@
 }
 
 :root {
-  --color-primary: #1c3c3c;
-  --color-user-message: #076699;
-  --color-avatar-bg: #ebe8fe;
-  --color-secondary: #1c3c3c;
+  --color-primary: #10b981;
+  --color-primary-light: #34d399;
+  --color-primary-dark: #059669;
+  --color-user-message: #10b981;
+  --color-avatar-bg: #059669;
+  --color-secondary: #6366f1;
   --color-success: #10b981;
+  --color-success-light: #34d399;
   --color-warning: #f59e0b;
+  --color-warning-light: #fbbf24;
   --color-error: #ef4444;
-  --color-background: #f9f9f9;
-  --color-subagent-hover: #d0c9fe;
-  --color-surface: #f9fafb;
-  --color-border: #e5e7eb;
-  --color-border-light: #f3f4f6;
-  --color-text-primary: #111827;
-  --color-text-secondary: #6b7280;
-  --color-text-tertiary: #9ca3af;
+  --color-error-light: #f87171;
+  --color-background: #171717;
+  --color-surface: #262626;
+  --color-surface-hover: #404040;
+  --color-border: #404040;
+  --color-border-light: #262626;
+  --color-border-focus: #10b981;
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #d4d4d4;
+  --color-text-tertiary: #a3a3a3;
+  --color-text-inverse: #171717;
+  --color-shadow: rgba(0, 0, 0, 0.5);
+  --color-shadow-hover: rgba(0, 0, 0, 0.7);
 }
 
 @media (prefers-color-scheme: dark) {

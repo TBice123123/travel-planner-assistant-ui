@@ -2,58 +2,76 @@
 
 .message {
   display: flex;
-  gap: $spacing-sm;
+  gap: $spacing-md;
   width: 100%;
   max-width: 100%;
   overflow-x: hidden;
+  padding: $spacing-xs 0;
+  animation: fadeInUp 0.3s ease-out;
 
   &.user {
     flex-direction: row-reverse;
 
     .bubble {
-      background-color: var(--color-user-message);
-      color: white;
+      background: linear-gradient(135deg, var(--color-user-message) 0%, var(--color-primary-light) 100%);
+      color: var(--color-text-inverse);
       margin-left: auto;
       margin-top: $spacing-md;
+      box-shadow: 0 2px 8px rgba(79, 70, 229, 0.2);
+      border: none;
     }
 
     .avatar {
       margin-top: $spacing-md;
-      background-color: var(--color-user-message);
+      background: linear-gradient(135deg, var(--color-user-message) 0%, var(--color-primary-light) 100%);
+      box-shadow: 0 2px 4px rgba(79, 70, 229, 0.2);
     }
 
     .avatarIcon {
-      color: white;
+      color: var(--color-text-inverse);
     }
   }
 
   &.assistant {
     .bubble {
       margin-top: $spacing-md;
-      background-color: var(--color-surface);
+      background: var(--color-surface);
       border: 1px solid var(--color-border);
       color: var(--color-text-primary);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+      transition: all $transition-base;
+      
+      &:hover {
+        border-color: var(--color-border-focus);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+      }
     }
 
     .avatar {
       margin-top: $spacing-md;
-      background-color: var(--color-avatar-bg);
+      background: linear-gradient(135deg, var(--color-avatar-bg) 0%, var(--color-primary-light) 100%);
+      box-shadow: 0 2px 4px rgba(99, 102, 241, 0.2);
     }
 
     .avatarIcon {
-      color: var(--color-secondary);
+      color: var(--color-primary);
     }
   }
 }
 
 .avatar {
-  width: 32px;
-  height: 32px;
+  width: 36px;
+  height: 36px;
   border-radius: $radius-full;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  transition: all $transition-base;
+  
+  &:hover {
+    transform: scale(1.05);
+  }
 }
 
 .avatarHidden {
@@ -62,8 +80,8 @@
 }
 
 .avatarIcon {
-  width: 16px;
-  height: 16px;
+  width: 18px;
+  height: 18px;
 }
 
 .content {
@@ -74,11 +92,24 @@
 
 .bubble {
   border-radius: $radius-lg;
-  padding: $spacing-sm;
+  padding: $spacing-md;
   overflow: hidden;
   word-break: break-word;
   width: fit-content;
   max-width: 100%;
+  position: relative;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, transparent 0%, rgba(255, 255, 255, 0.1) 100%);
+    border-radius: inherit;
+    pointer-events: none;
+  }
 }
 
 .text {
@@ -86,6 +117,8 @@
   line-height: $line-height-relaxed;
   white-space: pre-wrap;
   margin: 0;
+  position: relative;
+  z-index: 1;
 }
 
 .toolCalls {
@@ -94,5 +127,17 @@
   flex-direction: column;
   width: fit-content;
   max-width: 100%;
+  gap: $spacing-sm;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 

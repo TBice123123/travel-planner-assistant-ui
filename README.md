@@ -2,7 +2,9 @@
 
 该项目fork自官方的deepagents-ui项目，魔改了一些功能。
 
-B站视频链接：https://www.bilibili.com/video/BV1dkaAzAE3P/?vd_source=dc888e407bc7cf296286572a7555e7e3
+![alt text](/static/image.png)
+B站视频链接(1)：https://www.bilibili.com/video/BV1dkaAzAE3P<br>
+B站视频链接(2)：https://www.bilibili.com/video/BV1TYa3zGEyv
 
 Deep Agents 是通用的 AI 智能体，能够处理各种复杂度的任务。这是一个用于与 LangChain 的 [`deep-agents`] 包配套使用的 UI 界面。
 
@@ -60,6 +62,20 @@ npm run dev
   - 将 `getStatusIcon` 函数中的 `"completed"` 状态改为 `"done"`
   - 将 `groupedTodos` 中的筛选条件从 `"completed"` 改为 `"done"`
 - **作用**: 正确显示已完成任务的图标和分组
+
+### 6. 移除子代理相关组件和功能
+
+- **文件**:
+  - `src/app/components/ChatInterface/ChatInterface.tsx`
+  - `src/app/components/ChatMessage/ChatMessage.tsx`
+  - `src/app/page.tsx`
+  - `src/app/types/types.ts`
+- **删除**:
+  - `SubAgentIndicator` 组件及其样式文件
+  - `SubAgentPanel` 组件及其样式文件
+  - 从 types.ts 中移除 `SubAgent` 接口
+  - 从 ChatInterface 和 HomePage 中移除子代理相关代码
+- **作用**: 简化UI界面，移除未使用的子代理功能
 
 ### 主要改进
 

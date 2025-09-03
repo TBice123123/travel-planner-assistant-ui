@@ -182,7 +182,7 @@ export const ChatInterface = React.memo<ChatInterfaceProps>(
         <div className={styles.header}>
           <div className={styles.headerLeft}>
             <Bot className={styles.logo} />
-            <h1 className={styles.title}>Deep Agents</h1>
+            <h1 className={styles.title}>Deep-Agent-LangGraph</h1>
           </div>
           <div className={styles.headerRight}>
             <Button
