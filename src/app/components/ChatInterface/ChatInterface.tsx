@@ -182,7 +182,7 @@ export const ChatInterface = React.memo<ChatInterfaceProps>(
         <div className={styles.header}>
           <div className={styles.headerLeft}>
             <Bot className={styles.logo} />
-            <h1 className={styles.title}>Deep-Agent-LangGraph</h1>
+            <h1 className={styles.title}>旅游规划助手</h1>
           </div>
           <div className={styles.headerRight}>
             <Button
@@ -192,7 +192,7 @@ export const ChatInterface = React.memo<ChatInterfaceProps>(
               disabled={!hasMessages}
             >
               <SquarePen size={20} />
-            </Button>
+            </Button> 
             <Button variant="ghost" size="icon" onClick={toggleThreadHistory}>
               <History size={20} />
             </Button>

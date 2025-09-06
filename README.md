@@ -1,8 +1,8 @@
-# Deep Agents UI （魔改版）
+# 旅游规划助手UI （魔改版）
 
 该项目fork自官方的deepagents-ui项目，魔改了一些功能。
 
-![alt text](/static/image.png)
+![alt text](static/image.png)
 B站视频链接(1)：https://www.bilibili.com/video/BV1dkaAzAE3P<br>
 B站视频链接(2)：https://www.bilibili.com/video/BV1TYa3zGEyv
 
