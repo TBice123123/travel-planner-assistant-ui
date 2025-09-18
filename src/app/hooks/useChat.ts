@@ -9,7 +9,7 @@ import { useAuthContext } from "@/providers/Auth";
 
 type StateType = {
   messages: Message[];
-  todo: TodoItem[];
+  plan: TodoItem[];
   note: Record<string, string>;
 };
 
@@ -41,9 +41,9 @@ export function useChat(
         console.log("tools 节点数据:", data.tools);
         
         // 处理 todo 数据
-        if (data.tools?.todo && Array.isArray(data.tools.todo)) {
-          console.log(`发现 todo 数据，数量: ${data.tools.todo.length}`);
-          onTodosUpdate(data.tools.todo);
+        if (data.tools?.plan && Array.isArray(data.tools.plan)) {
+          console.log(`发现 plan 数据，数量: ${data.tools.plan.length}`);
+          onTodosUpdate(data.tools.plan);
         }
         
       }
